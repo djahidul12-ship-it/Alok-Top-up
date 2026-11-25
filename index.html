@@ -1,1 +1,148 @@
-# Alok-Top-up
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALOK TOP UP</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#050b18;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#0b1730;padding:22px;
+ text-align:center;border-bottom:2px solid #168cff;
+}
+header h1{color:#16a5ff;margin:0}
+header p{color:#aaa}
+.hero{
+ text-align:center;padding:35px 15px;
+ background:linear-gradient(135deg,#061b40,#0754a0,#050b18);
+}
+.hero h2{font-size:28px}
+.container{max-width:600px;margin:auto;padding:18px}
+.card{
+ background:#101e36;padding:18px;
+ border:1px solid #1768ad;
+ border-radius:13px;margin-bottom:18px;
+}
+h3{color:#28aaff}
+.packages{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.item{
+ background:#07152b;border:1px solid #168cff;
+ padding:17px 5px;text-align:center;
+ border-radius:10px;cursor:pointer;
+}
+.item.active{background:#123b69;border:2px solid #24b5ff}
+.price{color:#28baff;margin-top:8px}
+input,select{
+ width:100%;padding:13px;margin:8px 0;
+ border-radius:8px;border:1px solid #2685cc;
+ background:#071326;color:white;font-size:16px;
+}
+button{
+ width:100%;padding:14px;border:0;
+ border-radius:9px;background:#078cff;
+ color:white;font-size:17px;font-weight:bold;
+}
+footer{text-align:center;color:#999;padding:25px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌌 ALOK TOP UP</h1>
+<p>FREE FIRE DIAMOND STORE</p>
+</header>
+
+<div class="hero">
+<h2>WELCOME TO ALOK TOP UP</h2>
+<p>Fast • Easy • Gaming Store</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h3>💎 Select Diamond</h3>
+<div class="packages">
+<div class="item active" onclick="choose(this,'25 Diamonds',50)">
+<b>25 💎</b><p class="price">৳50</p>
+</div>
+<div class="item" onclick="choose(this,'50 Diamonds',100)">
+<b>50 💎</b><p class="price">৳100</p>
+</div>
+<div class="item" onclick="choose(this,'115 Diamonds',200)">
+<b>115 💎</b><p class="price">৳200</p>
+</div>
+<div class="item" onclick="choose(this,'240 Diamonds',400)">
+<b>240 💎</b><p class="price">৳400</p>
+</div>
+</div>
+<p style="color:#aaa;font-size:12px">নমুনা মূল্য। প্রকৃত মূল্য যাচাই করে সেট করুন।</p>
+</div>
+
+<div class="card">
+<h3>🎮 Player Details</h3>
+<input id="uid" placeholder="Free Fire Player UID">
+</div>
+
+<div class="card">
+<h3>💳 Payment Method</h3>
+<select id="payment">
+<option value="">Payment Select করুন</option>
+<option>bKash</option>
+<option>Nagad</option>
+</select>
+</div>
+
+<div class="card">
+<h3>🛒 Order Details</h3>
+<p id="details">25 Diamonds - ৳50</p>
+<button onclick="order()">ORDER NOW</button>
+<p id="message"></p>
+</div>
+
+</div>
+
+<footer>
+ALOK TOP UP © 2026
+<p>Thank You For Visiting</p>
+</footer>
+
+<script>
+let diamond="25 Diamonds",price=50;
+
+function choose(el,name,cost){
+ document.querySelectorAll('.item').forEach(x=>x.classList.remove('active'));
+ el.classList.add('active');
+ diamond=name;
+ price=cost;
+ document.getElementById('details').innerText=name+" - ৳"+cost;
+}
+
+function order(){
+ let uid=document.getElementById('uid').value.trim();
+ let pay=document.getElementById('payment').value;
+ let msg=document.getElementById('message');
+
+ if(!/^\d+$/.test(uid)){
+ msg.innerText="সঠিক UID লিখুন";
+ return;
+ }
+ if(!pay){
+ msg.innerText="Payment Select করুন";
+ return;
+ }
+ msg.innerText="ডেমো অর্ডার: "+diamond+
+ " | UID: "+uid+" | ৳"+price+
+ " | "+pay+". বাস্তব অর্ডার এখনো চালু নয়।";
+}
+</script>
+
+</body>
+</html>
+
