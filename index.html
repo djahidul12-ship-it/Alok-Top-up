@@ -164,6 +164,82 @@ WhatsApp 01737874818
 </a>
 </div>
 
+<!-- ALOK ADMIN & ORDER HISTORY -->
+<section class="card" id="orderHistory">
+  <h3>📦 Order History</h3>
+  <div id="customerOrders">
+    এখনো কোনো অর্ডার নেই।
+  </div>
+</section>
+
+<section class="card">
+  <h3>🔐 ALOK ADMIN</h3>
+  <input id="adminPin" type="password"
+    placeholder="Admin PIN লিখুন">
+  <button onclick="adminLogin()">Admin Login</button>
+  <div id="adminPanel" style="display:none">
+    <h3>📋 All Orders</h3>
+    <div id="allOrders"></div>
+  </div>
+</section>
+
+<style>
+#orderHistory, #orderHistory + .card {
+  margin:20px auto;
+  padding:18px;
+  background:#101e36;
+  border:1px solid #168cff;
+  border-radius:12px;
+}
+.order-item {
+  padding:12px;
+  margin:10px 0;
+  background:#07152b;
+  border-radius:8px;
+}
+</style>
+
+<script>
+const DEMO_PIN = "2468";
+
+function getOrders() {
+  return JSON.parse(localStorage.getItem("alokOrders") || "[]");
+}
+
+function showOrders() {
+  const orders = getOrders();
+
+  document.getElementById("customerOrders").innerHTML =
+    orders.length ? orders.map(o =>
+      `<div class="order-item">
+        Order: ${o.id}<br>
+        UID: ${o.uid}<br>
+        Package: ${o.package}<br>
+        Status: ${o.status}
+      </div>`
+    ).join("") : "এখনো কোনো অর্ডার নেই।";
+}
+
+function adminLogin() {
+  if (document.getElementById("adminPin").value === DEMO_PIN) {
+    document.getElementById("adminPanel").style.display = "block";
+    document.getElementById("allOrders").innerHTML =
+      getOrders().map(o =>
+        `<div class="order-item">
+          Order: ${o.id}<br>
+          UID: ${o.uid}<br>
+          Package: ${o.package}<br>
+          Status: ${o.status}
+        </div>`
+      ).join("") || "কোনো অর্ডার নেই।";
+  } else {
+    alert("ভুল PIN!");
+  }
+}
+
+showOrders();
+</script>
+
 </body>
 </html>
 
